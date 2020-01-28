@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400&display=swap');
+@import 'pallete.scss';
+
+body {
+    margin: 0;
+    font-family: "Raleway", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.rtl{
+    direction: rtl;
+}
+    
+.container{
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.banner{
+    background-color: $dark;
+    padding: 60px 0 30px;
+    .title{
+        color: #fff;
+        font-size: 60px;
+        padding: 40px 0 30px;
+        text-align: center;
+        margin: 0;
+    }
+    img{
+        width: 100%;
+        max-width: 1024px;
+        margin: 0 auto;
+        display: block;
+    }
+    span{
+        color: #fff;
+        font-weight: bold;
+        font-size: 24px;
+        display: block;
+        max-width: 1024px;
+        padding: 15px 30px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+}
+@include mobile{
+    .divide{
+        flex-wrap: wrap;
+        >* {
+            flex-basis: 100% !important;
+        }
+    }
+}
+
+
+.hidden{
+    display: none !important;
+}
+
+a{
+    color: inherit;
+    text-decoration: inherit;
+}

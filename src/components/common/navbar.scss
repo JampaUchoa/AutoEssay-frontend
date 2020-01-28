@@ -1,0 +1,143 @@
+@import 'pallete.scss';
+
+.normal .outline-img{
+    opacity: 0;
+}
+
+.dark .normal-img{
+    opacity: 0;
+}
+
+.rtl .options{
+    left: 0;
+    right: -100px;
+    @include mobile{
+        left: -130px !important;
+        right: 40px;
+    }
+
+}
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: transparent;
+    color: #fff;
+    background-color: black;
+    z-index: 99;
+    transition: 0.28s all linear;
+    .container{
+        flex-wrap: wrap;
+    }
+    &+*{
+        padding-top: 60px;
+    }
+
+    .main-link {
+//        background-color: #fff;
+        margin: 0 5px;
+        font-weight: bold;
+//        color: #00a414;
+        border-radius: 20px;
+        background-color: $color;
+        color: #fff;
+        transition: 0.28s all linear;
+        padding: 10px 15px;
+        &:hover{
+            color: #fff;
+            background-color: $dark;
+        }
+    }
+    
+    &.dark{
+        padding: 20px 0;
+        font-weight: bold;
+        .hamburguer{
+            color: #fff;
+        }
+        .sections.open{
+            background-color: $dark;
+        }
+    }
+
+    &.normal{
+        box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.32);
+        background-color: #fff;
+        color: #333;
+        .main-link{
+            background-color: $color;
+            color: #fff;    
+        }
+        .hamburguer{
+            color: $dark;
+        }
+        .logo img{
+            margin: 12px 0 4px;
+        }    
+    }
+
+    .container{
+        display: flex;
+        justify-content: space-between;   
+    }
+    .logo{
+        img{
+            height: 45px;
+            margin: 6px 0 4px;
+            position: absolute;
+            transition: 0.25s;
+        }
+    }
+
+    .hamburguer{
+        display: none;
+        font-size: 45px;
+        padding: 10px 15px 0;
+        color: $dark;
+        @include mobile{
+            display: block;
+        }
+    }
+    .sections{
+        @include mobile{
+            width: 100%;
+            max-height: 0px;
+            overflow: hidden;
+            transition: 1s all;
+            &.open{
+                max-height: 260px;
+            }
+            li{
+                display: block;
+            }
+            ul{
+                margin: 0 0 10px;
+            }
+        }
+    }
+
+    ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        margin: 19px 0 10px;
+    }
+    a{
+        &:hover{
+            color: $color;
+        }
+    }
+    li{
+        display: inline-block;
+        padding: 10px 15px;
+
+    }
+
+    
+
+}
+
+.navbar-spacer{
+    height: 60px;
+}
