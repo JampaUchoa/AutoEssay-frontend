@@ -3,7 +3,6 @@ import './navbar.scss';
 
 
 export default function Navbar() {
-    
 
     const [navStyle, setStyle] = useState("dark");
     const scrollFunction = () => {
@@ -17,9 +16,14 @@ export default function Navbar() {
 
     window.addEventListener('scroll', scrollFunction);
     return (
-            <div className={`navbar ${navStyle}`}>
+        <>
+        <div className={`navbar ${navStyle}`}>
+            <h2>AutoRedação</h2>
+        </div>
+        <div className="navbar-spacer">
+        </div>
 
-            </div>
+        </>
     )
 
 }
