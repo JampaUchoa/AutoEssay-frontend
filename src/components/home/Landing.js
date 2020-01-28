@@ -13,6 +13,16 @@ export default function Landing() {
             <textarea rows="25"/>
           </div>
         </div>
+        
+        <div className="actions">
+          <button>
+            Revisar
+          </button>
+          <button>
+            Avaliar
+          </button>
+        </div>
+
       </div>
   );
 }
