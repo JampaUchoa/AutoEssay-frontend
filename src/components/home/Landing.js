@@ -28,6 +28,10 @@ export default function Landing() {
     setStatus("evaluated");
   }
 
+  const resetEssay = (e) => {
+    setForm(emptyForm);
+    setStatus("writing");
+  }
 
   return (
     <div className="essay-container">
@@ -35,21 +39,21 @@ export default function Landing() {
       <div className="essay">
         <div className={`form ${status}`}>
           <div className="title" >
-            <input type="text" name="title" required onChange={changeForm} value={form.title} placeholder="Escreva aqui seu titulo" />
+            <input type="text" name="title" required onChange={changeForm} value={form.title} readOnly={status !== "writing"} placeholder="Escreva aqui seu titulo" />
           </div>
           <div className="content">
-            <textarea name="essay" required onChange={changeForm} value={form.essay} rows="25" />
+            <textarea name="essay" required onChange={changeForm} value={form.essay} readOnly={status !== "writing"} rows="25" />
           </div>
         </div>
         <Results status={status} />
       </div>
 
-      <Actions status={status} postEssay={postEssay} setStatus={setStatus} />
+      <Actions status={status} postEssay={postEssay} setStatus={setStatus} resetEssay={resetEssay} />
     </div>
   );
 }
 
-function Actions({ status, postEssay, setStatus }) {
+function Actions({ status, postEssay, setStatus, resetEssay }) {
 
   let content = "";
 
@@ -59,7 +63,7 @@ function Actions({ status, postEssay, setStatus }) {
         <button onClick={() => setStatus("revising")}>
           Revisar
         </button>
-        <button onClick={postEssay}>
+        <button className="action" onClick={postEssay}>
           Avaliar
         </button>
       </>
@@ -70,7 +74,7 @@ function Actions({ status, postEssay, setStatus }) {
         <button onClick={() => setStatus("writing")}>
           Editar
         </button>
-        <button onClick={postEssay}>
+        <button className="action" onClick={postEssay}>
           Avaliar
         </button>
       </>
@@ -78,7 +82,7 @@ function Actions({ status, postEssay, setStatus }) {
   } else {
     content = (
       <>
-        <button>
+        <button className="action" onClick={resetEssay}>
           Nova redação
         </button>
       </>
