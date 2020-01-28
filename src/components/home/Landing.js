@@ -31,13 +31,17 @@ export default function Landing() {
 
   return (
     <div className="essay-container">
-      <div className={`form ${status}`}>
-        <div className="title" >
-          <input type="text" name="title" required onChange={changeForm} value={form.title} placeholder="Escreva aqui seu titulo" />
+
+      <div className="essay">
+        <div className={`form ${status}`}>
+          <div className="title" >
+            <input type="text" name="title" required onChange={changeForm} value={form.title} placeholder="Escreva aqui seu titulo" />
+          </div>
+          <div className="content">
+            <textarea name="essay" required onChange={changeForm} value={form.essay} rows="25" />
+          </div>
         </div>
-        <div className="essay">
-          <textarea name="essay" required onChange={changeForm} value={form.essay} rows="25" />
-        </div>
+        <Results status={status} />
       </div>
 
       <Actions status={status} postEssay={postEssay} setStatus={setStatus} />
@@ -87,6 +91,40 @@ function Actions({ status, postEssay, setStatus }) {
     </div>
   )
 
+}
+
+function Results({ results, status }) {
+  if (status !== "evaluated") return null;
+
+  return (
+    <div className="evaluation">
+      <h3>
+        Avaliação
+      </h3>
+      <ul>
+        <li>
+          Competência 1: 20
+        </li>
+        <li>
+          Competência 2: 20
+        </li>
+        <li>
+          Competência 3: 20
+        </li>
+        <li>
+          Competência 4: 20
+        </li>
+        <li>
+          Competência 5: 20
+        </li>
+      </ul>
+      <hr />
+      <div className="total">
+        Total: 1000
+      </div>
+
+    </div>
+  )
 
 }
 
