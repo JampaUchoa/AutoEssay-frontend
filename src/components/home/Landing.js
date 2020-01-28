@@ -3,16 +3,18 @@ import './landing.scss';
 
 export default function Landing() {
 
+
+  const [results, setResults] = useState({})
+
+  // Can be "writing", "revising", "evaluated"
+  const [status, setStatus] = useState("writing")
+
   const emptyForm = {
     title: "",
     essay: "",
   };
 
   const [form, setForm] = useState(emptyForm)
-
-  // Can be "writing", "revising", "evaluated"
-  const [status, setStatus] = useState("writing")
-
   const changeForm = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
@@ -25,9 +27,20 @@ export default function Landing() {
       essay: STRING
     }
     */
+
+    // TODO do a fetch here
+    
+    setResults({
+      score: 900,
+      category_1:null,
+      category_2:150,
+      category_3:null,
+      category_4:null,
+      category_5:null
+    })
     setStatus("evaluated");
   }
-
+ 
   const resetEssay = (e) => {
     setForm(emptyForm);
     setStatus("writing");
@@ -45,7 +58,7 @@ export default function Landing() {
             <textarea name="essay" required onChange={changeForm} value={form.essay} readOnly={status !== "writing"} rows="25" />
           </div>
         </div>
-        <Results status={status} />
+        <Results status={status} results={results} />
       </div>
 
       <Actions status={status} postEssay={postEssay} setStatus={setStatus} resetEssay={resetEssay} />
@@ -100,31 +113,43 @@ function Actions({ status, postEssay, setStatus, resetEssay }) {
 function Results({ results, status }) {
   if (status !== "evaluated") return null;
 
+  const categories = [
+    "Escrita formal",
+    "Compreensão do tema",
+    "Defesa do ponto de vista",
+    "Argumentação",
+    "Proposta de intervenção"
+  ]
+
   return (
     <div className="evaluation">
       <h3>
         Avaliação
       </h3>
       <ul>
-        <li>
-          Competência 1: 20
-        </li>
-        <li>
-          Competência 2: 20
-        </li>
-        <li>
-          Competência 3: 20
-        </li>
-        <li>
-          Competência 4: 20
-        </li>
-        <li>
-          Competência 5: 20
-        </li>
+        {categories.map((cat, i) => (
+          <li className="category" key={cat}>
+            <div className="main">
+              <span className="title">
+                {categories[i]}               
+              </span>
+              <span className="score-badge">
+                {results[`category_${i+1}`] || "ND"}
+              </span>
+            </div>
+            <div className="bar-container">
+              <div className="bar" style={{width: results[`category_${i+1}`] * 0.5 + "%" }}></div>
+            </div>
+          </li>
+        ))}
       </ul>
       <hr />
       <div className="total">
-        Total: 1000
+        Nota final
+        <br/>
+          <div className="score">
+            <span>{results.score} </span> / 1000
+          </div>
       </div>
 
     </div>
