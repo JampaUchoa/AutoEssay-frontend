@@ -1,4 +1,9 @@
-const DEFAULT_URL = "http://localhost:8000/"
+let DEFAULT_URL = ""
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    DEFAULT_URL = `http://localhost:8000`;
+} else {
+    DEFAULT_URL = "http://livox-1492702205991.appspot.com";
+}
 
 export const post = async (endpoint, postData, contentType = "application/json") => {
 

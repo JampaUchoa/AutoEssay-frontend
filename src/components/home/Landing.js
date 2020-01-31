@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './landing.scss';
 import { post } from 'constants.js';
 
@@ -21,7 +21,7 @@ export default function Landing() {
   }
 
   const postEssay = (e) => {
-    post("", form).then(res => setResults(res.scores))
+    post("/", form).then(res => setResults(res.scores))
     setStatus("evaluated");
   }
 
