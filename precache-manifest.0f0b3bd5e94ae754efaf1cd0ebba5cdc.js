@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2b70c1eba4252d7562091b8a80c3950a",
+    "revision": "de85b9f5c31c21371654f91cc10739e2",
     "url": "/AutoEssay-frontend/index.html"
   },
   {
-    "revision": "b292c70289175021d127",
+    "revision": "2ad6189723b1837df0fc",
     "url": "/AutoEssay-frontend/static/css/main.b8027c58.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/AutoEssay-frontend/static/js/2.2d095948.chunk.js.LICENSE"
   },
   {
-    "revision": "b292c70289175021d127",
-    "url": "/AutoEssay-frontend/static/js/main.ae349312.chunk.js"
+    "revision": "2ad6189723b1837df0fc",
+    "url": "/AutoEssay-frontend/static/js/main.2e88c5bf.chunk.js"
   },
   {
     "revision": "34b5bd5a3b32b3c8484c",
