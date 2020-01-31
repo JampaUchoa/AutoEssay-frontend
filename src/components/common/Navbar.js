@@ -18,7 +18,7 @@ export default function Navbar() {
     return (
         <>
         <div className={`navbar ${navStyle}`}>
-            <h2>AutoRedação</h2>
+            <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EasyEssay</h2>
         </div>
         <div className="navbar-spacer">
         </div>

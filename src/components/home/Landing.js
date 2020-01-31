@@ -36,7 +36,7 @@ export default function Landing() {
       <div className="essay">
         <div className={`form ${status}`}>
           <div className="title" >
-            <input type="text" name="title" required onChange={changeForm} value={form.title} readOnly={status !== "writing"} placeholder="Escreva aqui seu titulo" />
+          <h2 align="center">Insira sua redação abaixo</h2>
           </div>
           <div className="content">
             <textarea name="essay" required onChange={changeForm} value={form.essay} readOnly={status !== "writing"} rows="25" />

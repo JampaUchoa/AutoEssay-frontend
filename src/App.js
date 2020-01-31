@@ -22,8 +22,8 @@ function App() {
     <div>
       <Router history={history}>
         <Helmet
-              defaultTitle={'AutoRedação'}
-              titleTemplate={`%s - ${'AutoRedação'}`}
+              defaultTitle={' Easy Essay'}
+              titleTemplate={`%s - ${'  Easy Essay'}`}
         />
         <Navbar/>
         <Switch>
