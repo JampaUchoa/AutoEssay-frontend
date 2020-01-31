@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './landing.scss';
+import { post } from 'constants.js';
 
 export default function Landing() {
 
 
-  const [results, setResults] = useState({})
+  const [results, setResults] = useState([])
 
   // Can be "writing", "revising", "evaluated"
   const [status, setStatus] = useState("writing")
@@ -20,27 +21,10 @@ export default function Landing() {
   }
 
   const postEssay = (e) => {
-    /*
-    //TODO to a POST to django with form content
-    {
-      title: STRING,
-      essay: STRING
-    }
-    */
-
-    // TODO do a fetch here
-    
-    setResults({
-      score: 900,
-      category_1:null,
-      category_2:150,
-      category_3:null,
-      category_4:null,
-      category_5:null
-    })
+    post("", form).then(res => setResults(res.scores))
     setStatus("evaluated");
   }
- 
+
   const resetEssay = (e) => {
     setForm(emptyForm);
     setStatus("writing");
@@ -111,6 +95,9 @@ function Actions({ status, postEssay, setStatus, resetEssay }) {
 }
 
 function Results({ results, status }) {
+  const [currentResult, setCurrentResult] = useState(0);
+
+  if (results.length === 0) return null;
   if (status !== "evaluated") return null;
 
   const categories = [
@@ -123,6 +110,14 @@ function Results({ results, status }) {
 
   return (
     <div className="evaluation">
+      <select
+        onChange={(e) => setCurrentResult(results[e.target.value])}>
+        {
+          results.map((res, i) => (
+            <option key={res.algorithm} value={i}>{res.algorithm}</option>
+          ))
+        }
+      </select>
       <h3>
         Avaliação
       </h3>
@@ -131,14 +126,14 @@ function Results({ results, status }) {
           <li className="category" key={cat}>
             <div className="main">
               <span className="title">
-                {categories[i]}               
+                {categories[i]}
               </span>
               <span className="score-badge">
-                {results[`category_${i+1}`] || "ND"}
+                {currentResult[`category_${i + 1}`] || "ND"}
               </span>
             </div>
             <div className="bar-container">
-              <div className="bar" style={{width: results[`category_${i+1}`] * 0.5 + "%" }}></div>
+              <div className="bar" style={{ width: currentResult[`category_${i + 1}`] * 0.5 + "%" }}></div>
             </div>
           </li>
         ))}
@@ -146,9 +141,9 @@ function Results({ results, status }) {
       <hr />
       <div className="total">
         Nota final
-        <br/>
-          <div className="score">
-            <span>{results.score} </span> / 1000
+        <br />
+        <div className="score">
+          <span>{(currentResult && currentResult.score) || results[0].score} </span> / 10
           </div>
       </div>
 
